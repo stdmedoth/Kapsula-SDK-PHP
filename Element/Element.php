@@ -56,7 +56,13 @@ Class Element {
 
 
    	public function to_json(){
-        return json_encode(get_object_vars($this));
+		$objectVars = get_object_vars($this);
+
+		// Filter out null values
+		$filteredVars = array_filter($objectVars, function ($value) {
+			return !empty($value);
+		});
+        return json_encode($filteredVars);
     }
 
 
