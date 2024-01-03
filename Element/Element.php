@@ -11,6 +11,8 @@ Class Element {
 		$this->request = new Request($route);
 	}
 
+	protected $id;
+
 	public $request;
 	public $route;
 	public $objects;
@@ -56,7 +58,17 @@ Class Element {
 
 
    	public function to_json(){
-        return json_encode(get_object_vars($this));
+		$objectVars = get_object_vars($this);
+
+		// Filter out null values
+		$filteredVars = array_filter($objectVars, function ($value) {
+			if ((gettype($value)=="string") && (strlen($value)<=0)){
+				return FALSE;
+			}
+
+			return ($value !== NULL);
+		});
+        return json_encode($filteredVars);
     }
 
 

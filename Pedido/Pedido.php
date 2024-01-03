@@ -26,6 +26,9 @@ Class Pedido extends Element{
  	public $cliente_id;
  	public $pacote_id;
  	public $tipo_frete;
+
+	public $referencia_externa;
+	
  	public $valor_venda; // Opcional: em centavos se informado (ex 372.00 * 100 = 37200)
  	public $notafiscal;  // Opcional
 	public $chave;
